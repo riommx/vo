@@ -3,6 +3,6 @@
 /// More dartdocs go here.
 library vo;
 
-export 'src/vo_base.dart';
+export 'src/vo_string.dart';
 
 // TODO: Export any libraries intended for clients of this package.
