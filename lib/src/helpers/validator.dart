@@ -1,4 +1,4 @@
-import 'failures/value_failure.dart';
+import '../failures/value_failure.dart';
 
 abstract class Validator {
   static List<ValueFailure<String>> str({

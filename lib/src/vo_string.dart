@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:vo/src/validator.dart';
+import 'package:vo/src/helpers/validator.dart';
 //
 import 'value_objrect.dart';
 import 'failures/value_failure.dart';
