@@ -3,14 +3,14 @@ import 'package:test/test.dart';
 
 void main() {
   group('A group of tests', () {
-    final name = VoNameSid(value: 'Side');
+    final name = VoNameExemple(value: 'Side');
 
     setUp(() {
       // Additional setup goes here.
     });
 
     test('First Test', () {
-      expect(name.getOrCrash(), 'Sid');
+      expect(name.value, 'Sid');
     });
   });
 }

@@ -1,47 +1,40 @@
 import 'package:dartz/dartz.dart';
-import 'package:vo/src/helpers/string_validator.dart';
-import 'package:vo/src/helpers/string_vo_validator.dart';
 //
 import 'value_objrect.dart';
 import 'failures/value_failure.dart';
+import 'validation/string_vo_validator.dart';
 
 //
 // #############################################################################
-// #  Ver: 0.1
+// #  Ver: 1.0
 // #  Nullsafety
 // #  TODO: Comment class
 // #############################################################################
-class VoNameSid extends ValueObject<String> {
+class VoNameExemple extends ValueObject<String> {
   // ===========================================================================
-  // ===========================================================================
-  VoNameSid._(Either<List<ValueFailure<String>>, String> value) : super(value);
+  VoNameExemple._(Either<List<ValueFailure<String>>, String> value)
+      : super(value);
 
   // ===========================================================================
-  factory VoNameSid({required String value}) {
-    //
-    const regex = r'^[a-zA-Z]+$';
+  factory VoNameExemple({required String value}) {
     //
     final constrains = {
-      Constrains.Regex: RegExp(regex),
+      Constrains.MaxLength: 4,
+      Constrains.SingleLine: null,
       Constrains.OtheValitadion: {
         'function': (v) => v == 'Sid',
         'message': 'Nome precisa ser Sid',
       },
-      Constrains.SingleLine: null,
-      Constrains.MaxLength: 4,
+      Constrains.Regex: RegExp(r'^[a-zA-Z]+$'),
     };
 
     var validator = StringVOValidator(constrains: constrains);
-
     //
     var failures = validator.validate(value: value);
     //
-
+    if (failures.isEmpty) return VoNameExemple._(right(value));
     //
-
-    if (failures.isEmpty) return VoNameSid._(right(value));
-    //
-    return VoNameSid._(left(failures));
+    return VoNameExemple._(left(failures));
   }
 }
 // ******************************************************************

@@ -4,8 +4,8 @@
 // #  Nullsafety
 // #  TODO: Comment class
 // #############################################################################
-import 'package:vo/src/helpers/i_string_validator.dart';
-import 'package:vo/src/helpers/i_validator.dart';
+import 'i_string_validator.dart';
+import 'i_validator.dart';
 
 class StringValidator implements IValidator<String>, IStringValidator {
   StringValidator();

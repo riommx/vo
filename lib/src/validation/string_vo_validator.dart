@@ -1,5 +1,5 @@
-import 'package:vo/src/failures/value_failure.dart';
-import 'package:vo/src/helpers/string_validator.dart';
+import '../failures/value_failure.dart';
+import 'string_validator.dart';
 
 // #############################################################################
 // #  Ver: 0.1

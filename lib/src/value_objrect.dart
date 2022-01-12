@@ -2,10 +2,11 @@ import 'package:meta/meta.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 //
-import 'i_validatable.dart';
+import 'validation/i_validatable.dart';
 import 'failures/value_error.dart';
 import 'failures/value_failure.dart';
 
+//
 // #############################################################################
 // #  Ver: 0.1
 // #  Nullsafety
@@ -15,14 +16,16 @@ import 'failures/value_failure.dart';
 // #############################################################################
 @immutable
 abstract class ValueObject<T> extends Equatable implements IValidatable {
+  //
   // ===========================================================================
   final Either<List<ValueFailure<T>>, T> _value;
-
+  //
   // ===========================================================================
   const ValueObject(this._value);
 
   // ===========================================================================
   /// Throws [UnexpectedValueError] containing the [ValueFailures]
+  //
   T get getOrCrash => _value.fold(
         (failures) => throw ValueError(failures),
         id, // id = identity - same as writing (right) => right
@@ -41,6 +44,7 @@ abstract class ValueObject<T> extends Equatable implements IValidatable {
   //      (l) => left(l),
   //      (r) => right(unit),
   //    );
+
   // ===========================================================================
   List<ValueFailure<T>> get failures => _value.fold(
         (l) => l,
@@ -76,5 +80,5 @@ abstract class ValueObject<T> extends Equatable implements IValidatable {
 // *  ┈┈┃┊┊┊~~~   ┈┈┈┈        -< Rio de Janeiro - Brazil >-
 // *  ━━╯┊┊┊╲△△△┓┈┈
 // *  ┊┊┊┊╭━━━━━━╯┈┈   --->  May the source be with you!  <---
-// *  
+// *
 // ******************************************************************
