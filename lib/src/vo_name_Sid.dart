@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:vo/src/helpers/validator.dart';
+import 'package:vo/src/helpers/string_validator.dart';
 //
 import 'value_objrect.dart';
 import 'failures/value_failure.dart';
@@ -10,49 +10,40 @@ import 'failures/value_failure.dart';
 // #  Nullsafety
 // #  TODO: Comment class
 // #############################################################################
-class VOString extends ValueObject<String> {
+class VoNameSid extends ValueObject<String> {
   //
   // ===========================================================================
+  final StringValidator _validator;
 
   // ===========================================================================
-  const VOString._(Either<List<ValueFailure<String>>, String> v) : super(v);
+  VoNameSid._(Either<List<ValueFailure<String>>, String> v, this._validator)
+      : super(v);
 
   // ===========================================================================
-  factory VOString({
+  factory VoNameSid({
     required String value,
   }) {
     //
-    var cons = {
-      'notEmpty': true,
-      'singleLine': true,
-      'minLength': 1,
-      'maxLength': 4,
-      'dateTime': false,
-      'otherValidation': {
-        'fun': (var v) => v != 'Sidex',
-        'message': 'Não pode ser igual a Sid',
-      },
-    };
-    var vl = Validator.str(value: value, constrains: cons);
+    var val = StringValidator.constrains(
+      notEmpty: true,
+      singleLine: true,
+      minLength: 1,
+      maxLength: 4,
+      dateTime: false,
+      otherValidation: (v) => v == 'Sid',
+    );
+    var failures = <ValueFailure<String>>[];
+
+    if (!val.otherValidation(value: value)) {
+      failures.add(ValueFailure.notPassTheValidation(
+          failedValue: value, type: String, message: 'Nome precisa ser Sid'));
+    }
 
     //
-    if (vl.isNotEmpty) {
-      return VOString._(left(vl));
-    }
-    return VOString._(right(value));
+    if (failures.isEmpty) return VoNameSid._(right(value), val);
+    //
+    return VoNameSid._(left(failures), val);
   }
-
-  /*
-    bool  = false,
-    bool  = false,
-    int? ,
-    int? ,
-    bool  = false,
-    RegExp? regex,
-    bool Function(dynamic v)? ,
-    String? otherValidationMessage,
-    */
-
 }
 // ******************************************************************
 // *    _____   _   _____      _______   ______    _____   _    _

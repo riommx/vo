@@ -22,20 +22,19 @@ abstract class ValueObject<T> extends Equatable implements IValidatable {
   const ValueObject(this._value);
 
   // ===========================================================================
-  /// Throws [UnexpectedValueError] containing the [ValueFailure]
-  // id = identity - same as writing (right) => right
+  /// Throws [UnexpectedValueError] containing the [ValueFailures]
   T getOrCrash() => _value.fold(
         (failures) => throw ValueError(failures),
-        id,
+        id, // id = identity - same as writing (right) => right
       );
 
   // ===========================================================================
-  //T getOrElse(T defaultValue) => _value.getOrElse(() => defaultValue);
-  T getOrElse(T defaultValue) => _value.fold(
-        (failures) => defaultValue,
-        id,
-      );
-  // getOrElse(() => defaultValue);
+  T getOrElse(T defaultValue) => _value.getOrElse(() => defaultValue);
+  //T getOrElse(T defaultValue) => _value.fold(
+  //      (failures) => defaultValue,
+  //      id,
+  //    );
+
   // ===========================================================================
   Either<List<ValueFailure<dynamic>>, Unit> get failureOrUnit => _value.fold(
         (l) => left(l),

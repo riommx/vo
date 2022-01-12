@@ -1,6 +1,6 @@
 import 'package:vo/vo.dart';
 
 void main() {
-  final name = VOString(value: 'Sidex');
-  print(name.failureOrUnit);
+  final name = VoNameSid(value: 'Sidex');
+  print(name.getOrElse('defaultValue'));
 }
