@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:vo/src/helpers/string_validator.dart';
+import 'package:vo/src/helpers/string_vo_validator.dart';
 //
 import 'value_objrect.dart';
 import 'failures/value_failure.dart';
@@ -11,38 +12,36 @@ import 'failures/value_failure.dart';
 // #  TODO: Comment class
 // #############################################################################
 class VoNameSid extends ValueObject<String> {
-  //
   // ===========================================================================
-  final StringValidator _validator;
-
   // ===========================================================================
-  VoNameSid._(Either<List<ValueFailure<String>>, String> v, this._validator)
-      : super(v);
+  VoNameSid._(Either<List<ValueFailure<String>>, String> value) : super(value);
 
   // ===========================================================================
-  factory VoNameSid({
-    required String value,
-  }) {
+  factory VoNameSid({required String value}) {
     //
-    var val = StringValidator.constrains(
-      notEmpty: true,
-      singleLine: true,
-      minLength: 1,
-      maxLength: 4,
-      dateTime: false,
-      otherValidation: (v) => v == 'Sid',
-    );
-    var failures = <ValueFailure<String>>[];
+    const regex = r'^[a-zA-Z]+$';
+    //
+    final constrains = {
+      Constrains.Regex: RegExp(regex),
+      Constrains.OtheValitadion: {
+        'function': (v) => v == 'Sid',
+        'message': 'Nome precisa ser Sid',
+      },
+      Constrains.SingleLine: null,
+      Constrains.MaxLength: 4,
+    };
 
-    if (!val.otherValidation(value: value)) {
-      failures.add(ValueFailure.notPassTheValidation(
-          failedValue: value, type: String, message: 'Nome precisa ser Sid'));
-    }
+    var validator = StringVOValidator(constrains: constrains);
 
     //
-    if (failures.isEmpty) return VoNameSid._(right(value), val);
+    var failures = validator.validate(value: value);
     //
-    return VoNameSid._(left(failures), val);
+
+    //
+
+    if (failures.isEmpty) return VoNameSid._(right(value));
+    //
+    return VoNameSid._(left(failures));
   }
 }
 // ******************************************************************
