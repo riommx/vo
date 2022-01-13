@@ -1,11 +1,11 @@
 import 'value_failure.dart';
 
 // #############################################################################
-// #
-// #  TODO: Comment class
-// #
-// #
+// #  Ver: 1.0 - last: 12/01/22
+// #  Nullsafety
+// #  Exeption for Value
 // #############################################################################
+//
 class ValueError extends Error {
   final List<ValueFailure> valueFailure;
 
@@ -29,9 +29,9 @@ class ValueError extends Error {
 // *
 // *  ┈┈┈╭━━╮┈┈┈┈┈┈
 // *  ┈┈╭╯┊◣╰━━━━╮┈┈
-// *  ┈┈┃┊┊┊╱▽▽▽┛┈┈  -< Designed by Sedinir Consentini @ 2021 >-
-// *  ┈┈┃┊┊┊~~~   ┈┈┈┈       -< Rio de Janeiro - Brazil >-
+// *  ┈┈┃┊┊┊╱▽▽▽┛┈┈  -< Designed by Sedinir Consentini @ MMXXII >-
+// *  ┈┈┃┊┊┊~~~   ┈┈┈┈        -< Rio de Janeiro - Brazil >-
 // *  ━━╯┊┊┊╲△△△┓┈┈
-// *  ┊┊┊┊╭━━━━━━━╯┈┈   --->  May the source be with you!  <---
-// *  v 2.0
+// *  ┊┊┊┊╭━━━━━━╯┈┈   --->  May the source be with you!  <---
+// *  
 // ******************************************************************

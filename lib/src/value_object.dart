@@ -2,17 +2,14 @@ import 'package:meta/meta.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 //
-import 'validation/i_validatable.dart';
 import 'failures/value_error.dart';
 import 'failures/value_failure.dart';
+import 'validation/i_validatable.dart';
 
-//
 // #############################################################################
-// #  Ver: 0.1
+// #  Ver: 1.0 - last: 12/01/22
 // #  Nullsafety
-// #  TODO: Comment class
-// #
-// #
+// #  Base Class for Validated Value Objects
 // #############################################################################
 @immutable
 abstract class ValueObject<T> extends Equatable implements IValidatable {
@@ -22,7 +19,7 @@ abstract class ValueObject<T> extends Equatable implements IValidatable {
   //
   // ===========================================================================
   const ValueObject(this._value);
-
+  //
   // ===========================================================================
   /// Throws [UnexpectedValueError] containing the [ValueFailures]
   //
@@ -30,37 +27,34 @@ abstract class ValueObject<T> extends Equatable implements IValidatable {
         (failures) => throw ValueError(failures),
         id, // id = identity - same as writing (right) => right
       );
-
+  //
+  // ===========================================================================
+  /// Throws [UnexpectedValueError] containing the [ValueFailures]
+  //
   T get value => _value.fold(
         (failures) => throw ValueError(failures),
         id, // id = identity - same as writing (right) => right
       );
-
+  //
   // ===========================================================================
   T getOrElse(T defaultValue) => _value.getOrElse(() => defaultValue);
-
-  // ===========================================================================
-  //Either<List<ValueFailure<T>>, Unit> get failureOrUnit => _value.fold(
-  //      (l) => left(l),
-  //      (r) => right(unit),
-  //    );
-
+  //
   // ===========================================================================
   List<ValueFailure<T>> get failures => _value.fold(
         (l) => l,
         (r) => <ValueFailure<T>>[],
       );
-
+  //
   // ===========================================================================
   // FOR IValidatable
   @override
   bool isValid() => _value.isRight();
-
+  //
   // ===========================================================================
   // FOR Equatable
   @override
   bool get stringify => true;
-
+  //
   // ===========================================================================
   // FOR Equatable
   @override

@@ -1,15 +1,17 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// #############################################################################
+// #  Ver: 1.0 - last: 12/01/22
+// #  Nullsafety
+// #  Freezed Union of Value Failures
+// #############################################################################
 //
 part 'value_failure.freezed.dart';
 
-// #############################################################################
-// #
-// #  TODO: Comment class
-// #
-// #
-// #############################################################################
+//
 @freezed
 abstract class ValueFailure<T> with _$ValueFailure<T> {
+  //
   // VALIDATOR --------------------------
   const factory ValueFailure.notPassTheValidation({
     required T failedValue,
@@ -74,9 +76,9 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
 // *
 // *  ┈┈┈╭━━╮┈┈┈┈┈┈
 // *  ┈┈╭╯┊◣╰━━━━╮┈┈
-// *  ┈┈┃┊┊┊╱▽▽▽┛┈┈  -< Designed by Sedinir Consentini @ 2021 >-
-// *  ┈┈┃┊┊┊~~~   ┈┈┈┈       -< Rio de Janeiro - Brazil >-
+// *  ┈┈┃┊┊┊╱▽▽▽┛┈┈  -< Designed by Sedinir Consentini @ MMXXII >-
+// *  ┈┈┃┊┊┊~~~   ┈┈┈┈        -< Rio de Janeiro - Brazil >-
 // *  ━━╯┊┊┊╲△△△┓┈┈
-// *  ┊┊┊┊╭━━━━━━━╯┈┈   --->  May the source be with you!  <---
-// *  v 2.0
+// *  ┊┊┊┊╭━━━━━━╯┈┈   --->  May the source be with you!  <---
+// *  
 // ******************************************************************

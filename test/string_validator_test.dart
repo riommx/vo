@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:vo/src/helpers/string_validator.dart';
+import 'package:vo/src/validation/string_validator.dart';
 
 // #############################################################################
 // #  Ver: 0.1
@@ -13,49 +13,44 @@ void main() {
     setUp(() {
       // Additional setup goes here.
     });
-
+    final validator = StringValidator();
     test('Not Empty String Test', () {
-      final validator = StringValidator.constrains(notEmpty: true);
       expect(validator.notEmpty(value: ''), false);
       expect(validator.notEmpty(value: '1'), true);
     });
 
     test('Single Line String Test', () {
-      final validator = StringValidator.constrains(singleLine: true);
       expect(validator.singleLine(value: '1\n2'), false);
       expect(validator.singleLine(value: ''), true);
     });
 
     test('Min Length String Test', () {
-      final validator = StringValidator.constrains(minLength: 2);
-      expect(validator.minLength(value: '1'), false);
-      expect(validator.minLength(value: '12'), true);
+      expect(validator.minLength(value: '1', min: 2), false);
+      expect(validator.minLength(value: '12', min: 2), true);
     });
 
     test('Max Length StraxTest', () {
-      final validator = StringValidator.constrains(maxLength: 2);
-      expect(validator.maxLength(value: '123'), false);
-      expect(validator.maxLength(value: '12'), true);
+      expect(validator.maxLength(value: '123', max: 2), false);
+      expect(validator.maxLength(value: '12', max: 2), true);
     });
 
     test('Date Time String Test', () {
-      final validator = StringValidator.constrains(dateTime: true);
       expect(validator.dateTime(value: 'sid'), false);
       expect(validator.dateTime(value: '2022-01-09 16:37:07'), true);
     });
 
     test('Regular Expression String Test', () {
-      final validator =
-          StringValidator.constrains(regex: RegExp(r'^[a-zA-Z0-9]+$'));
-      expect(validator.regex(value: 'abc123%'), false);
-      expect(validator.regex(value: 'abc123'), true);
+      expect(validator.regex(value: 'abc123%', reg: RegExp(r'^[a-zA-Z0-9]+$')),
+          false);
+      expect(validator.regex(value: 'abc123', reg: RegExp(r'^[a-zA-Z0-9]+$')),
+          true);
     });
 
     test('Other Validatiion String Test', () {
-      final validator =
-          StringValidator.constrains(otherValidation: (v) => v == 'Sid');
-      expect(validator.otherValidation(value: 'Sid%'), false);
-      expect(validator.otherValidation(value: 'Sid'), true);
+      expect(validator.otherValidation(value: 'Sid%', fun: (v) => v == 'Sid'),
+          false);
+      expect(validator.otherValidation(value: 'Sid', fun: (v) => v == 'Sid'),
+          true);
     });
   });
 }

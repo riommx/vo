@@ -1,26 +1,26 @@
-//
 // #############################################################################
-// #  Ver: 0.1
+// #  Ver: 1.0 - last: 12/01/22
 // #  Nullsafety
-// #  TODO: Comment class
+// #  Interface to validate a String
 // #############################################################################
 abstract class IStringValidator {
+  //
   bool notEmpty({required String value});
-
+  //
   bool singleLine({required String value});
-
+  //
   bool dateTime({required String value});
-
+  //
   bool minLength({
     required String value,
     required int min,
   });
-
+  //
   bool maxLength({
     required String value,
     required int max,
   });
-
+  //
   bool regex({
     required String value,
     required RegExp reg,

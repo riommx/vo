@@ -1,20 +1,20 @@
 import 'package:dartz/dartz.dart';
 //
-import 'value_objrect.dart';
+import 'value_object.dart';
 import 'failures/value_failure.dart';
 import 'validation/string_vo_validator.dart';
 
-//
 // #############################################################################
-// #  Ver: 1.0
+// #  Ver: 1.0 - last: 12/01/22
 // #  Nullsafety
-// #  TODO: Comment class
+// #  Exemple of how to create a String Validated Value Object
 // #############################################################################
 class VoNameExemple extends ValueObject<String> {
+  //
   // ===========================================================================
   VoNameExemple._(Either<List<ValueFailure<String>>, String> value)
       : super(value);
-
+  //
   // ===========================================================================
   factory VoNameExemple({required String value}) {
     //
@@ -27,7 +27,7 @@ class VoNameExemple extends ValueObject<String> {
       },
       Constrains.Regex: RegExp(r'^[a-zA-Z]+$'),
     };
-
+    //
     var validator = StringVOValidator(constrains: constrains);
     //
     var failures = validator.validate(value: value);
@@ -51,5 +51,5 @@ class VoNameExemple extends ValueObject<String> {
 // *  ┈┈┃┊┊┊~~~   ┈┈┈┈        -< Rio de Janeiro - Brazil >-
 // *  ━━╯┊┊┊╲△△△┓┈┈
 // *  ┊┊┊┊╭━━━━━━╯┈┈   --->  May the source be with you!  <---
-// *  
+// *
 // ******************************************************************

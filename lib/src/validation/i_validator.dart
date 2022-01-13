@@ -1,8 +1,6 @@
 // #############################################################################
-// #  Ver: 0.1
-// #  TODO: Comment class
-// #
-// #
+// #  Ver: 1.0 - last: 12/01/22
+// #  Interface for a all types validator
 // #############################################################################
 abstract class IValidator<T> {
   bool otherValidation({

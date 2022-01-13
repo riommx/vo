@@ -1,13 +1,13 @@
-//
-// #############################################################################
-// #  Ver: 0.1
-// #  Nullsafety
-// #  TODO: Comment class
-// #############################################################################
 import 'i_string_validator.dart';
 import 'i_validator.dart';
 
+// #############################################################################
+// #  Ver: 1.0 - last: 12/01/22
+// #  Nullsafety
+// #  Validator of Strings
+// #############################################################################
 class StringValidator implements IValidator<String>, IStringValidator {
+  //
   StringValidator();
 
   bool notEmpty({required String value}) => value.isNotEmpty;

@@ -2,13 +2,11 @@ import '../failures/value_failure.dart';
 import 'string_validator.dart';
 
 // #############################################################################
-// #  Ver: 0.1
+// #  Ver: 1.0 - last: 12/01/22
 // #  Nullsafety
-// #  TODO: Comment class
-// #
-// #
+// #  Validate a String VVO and return a ValueFailures List or the Right value
 // #############################################################################
-
+//
 enum Constrains {
   NotEmpty,
 
@@ -25,6 +23,7 @@ enum Constrains {
   OtheValitadion,
 }
 
+//
 class StringVOValidator {
   final Map<Constrains, dynamic> _constrains;
 
